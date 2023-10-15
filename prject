@@ -1,0 +1,54 @@
+import math
+from tkinter import Tk, Label, Entry, Button
+import tkinter as tk
+#Exit window for GUI
+def exit_gui():
+    window.destroy()
+
+window = tk.Tk()
+window.title("Triangle Area Calculator")
+#Calculate area procedure used
+def calculate_area():
+    side_a = float(side_a_entry.get())
+    side_b = float(side_b_entry.get())
+    side_c = float(side_c_entry.get())
+
+    # Use Heron's formula to calculate the area of the triangle
+    s = (side_a + side_b + side_c) / 2
+    area = math.sqrt(s * (s - side_a) * (s - side_b) * (s - side_c))
+
+    result_label.config(text=f"Area: {area}")
+
+# Creating the GUI window
+window = Tk()
+window.title("Triangle Area Calculator")
+
+# Create labels and entry boxes for the sides of the triangle
+side_a_label = Label(window, text="Side A:")
+side_a_label.pack()
+side_a_entry = Entry(window)
+side_a_entry.pack()
+
+side_b_label = Label(window, text="Side B:")
+side_b_label.pack()
+side_b_entry = Entry(window)
+side_b_entry.pack()
+
+side_c_label = Label(window, text="Side C:")
+side_c_label.pack()
+side_c_entry = Entry(window)
+side_c_entry.pack()
+
+# Create a button to calculate the area
+calculate_button = Button(window, text="Calculate", command=calculate_area)
+calculate_button.pack()
+
+# Create a label to display the result
+result_label = Label(window, text="")
+result_label.pack()
+#Exit button to exit application
+exit_button = tk.Button(window, text="Exit", command=exit_gui)
+exit_button.pack()
+
+# Run the GUI window
+window.mainloop()
